@@ -53,6 +53,5 @@ NSNumber *maryAge = students[1][@"age"];
 ```
 And above is an example of the combination of the two nested collections.
 
-##Tips
-
+##Tip
 Just as with the nested method calls, it is not recommended to nest more than a few levels of collection objects. The ease with which you can read your code the next time you look at it will ultimately outweigh the additional lines of code it takes to break up a nested collection into multiple pieces.
