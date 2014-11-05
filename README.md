@@ -14,6 +14,8 @@ These nested method calls first convert a `CGFloat` to an `NSNumber` and then co
 Method calls can be nested infinitely, but it is usually smart not to nest more than a couple as it will become hard to read quickly, even for the person who wrote the code if they have to come back to it in a week and modify it!
 
 ##Dictionaries
+
+######Example
 ```objc
 NSDictionary *venue = {@"name":@"Flatiron School",@"Location":@{@"StreetAddress":@"11 Broadway",@"City":@"New York",@"State:@"NY",@"Zip":@"10004"}};
 
@@ -24,6 +26,8 @@ Above we can see how to nest the creation of NSDictionary literals and then retr
 
 
 ##Arrays
+
+######Example
 ```
 NSArray *courses = @[@[@"iOS Beginner",@"iOS Intermediate",@"iOS Advanced"], @[@"Android Full time",@"Android After school", @"Android Nights and weekends"]];
 
@@ -34,6 +38,8 @@ Above we can see an example of both nesting `NSArray` literals and then extract 
 
 ##Dictionaries mixed with arrays
 
+
+######Example
 ```objc
 NSDictionary *mary = @{@"name":@"Mary",@"age":@16};
 NSDictionary *zach = @{@"name":@"Zach",@"age":@17};
