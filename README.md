@@ -17,7 +17,9 @@ Method calls can be nested infinitely, but it is usually smart not to nest more 
 
 ######Example
 ```objc
-NSDictionary *venue = {@"name":@"Flatiron School",@"Location":@{@"StreetAddress":@"11 Broadway",@"City":@"New York",@"State:@"NY",@"Zip":@"10004"}};
+NSDictionary *venue = {@"name":@"Flatiron School",
+@"Location":@{@"StreetAddress":@"11 Broadway",@"City":@"New York",
+@"State:@"NY",@"Zip":@"10004"}};
 
 NSString *schoolZip = venue[@"Location"][@"Zip"];
 ```
@@ -29,7 +31,8 @@ Above we can see how to nest the creation of NSDictionary literals and then retr
 
 ######Example
 ```
-NSArray *courses = @[@[@"iOS Beginner",@"iOS Intermediate",@"iOS Advanced"], @[@"Android Full time",@"Android After school", @"Android Nights and weekends"]];
+NSArray *courses = @[@[@"iOS Beginner",@"iOS Intermediate",@"iOS Advanced"], 
+@[@"Android Full time",@"Android After school", @"Android Nights and weekends"]];
 
 NSString *firstAndroidCourse = courses[2][1];
 
