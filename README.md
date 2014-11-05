@@ -26,7 +26,7 @@ Both of these are valid, and one is not "better" than the other. They are simply
 ```objc
 NSDictionary *venue = {@"name":@"Flatiron School",
 @"Location":@{@"StreetAddress":@"11 Broadway",@"City":@"New York",
-@"State:@"NY",@"Zip":@"10004"}};
+@"State":@"NY",@"Zip":@"10004"}};
 
 NSString *schoolZip = venue[@"Location"][@"Zip"];
 ```
@@ -37,7 +37,7 @@ Above we can see how to nest the creation of `NSDictionary` literals and then re
 ##Nested `NSArray` objects
 
 ######Example
-```
+```objc
 NSArray *courses = @[@[@"iOS Beginner",@"iOS Intermediate",@"iOS Advanced"], 
 @[@"Android Full time",@"Android After school", @"Android Nights and weekends"]];
 
