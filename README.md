@@ -39,7 +39,7 @@ NSString *firstAndroidCourse = courses[2][1];
 ```
 Above we can see an example of both nesting `NSArray` literals and then extract data from them.
 
-##Nested combination of `NSDictionary` and `NSArray`
+##Nested combination of `NSDictionary` and `NSArray` objects
 
 
 ######Example
