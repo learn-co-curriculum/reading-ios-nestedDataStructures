@@ -6,12 +6,19 @@ As you start to look at other people's code, as well as get more comfortable wit
 
 ######Example
 ```objc
-[[NSNumber numberWithFloat:23.0] stringValue];
+NSString *stringFromFloat = [[NSNumber numberWithFloat:23.0] stringValue];
 ```
 
 These nested method calls first convert a `CGFloat` to an `NSNumber` and then convert the `NSNumber` in the outer method call to an `NSString`.
 
-Method calls can be nested infinitely, but it is usually smart not to nest more than a couple as it will become hard to read quickly, even for the person who wrote the code if they have to come back to it in a week and modify it!
+This could just have easily been written like this:
+
+```objc
+NSNumber *numberFromFloat = [NSNumber numberWithFloat:23.0];
+NSString *stringFromNumber = [numberFromFloat stringValue];
+```
+
+Both of these are valid, and one is not "better" than the other. They are simply different ways of saying the same thing!
 
 ##Nested `NSDictionary` objects
 
@@ -53,5 +60,8 @@ NSNumber *maryAge = students[1][@"age"];
 ```
 And above is an example of the combination of the two nested collections.
 
-##Tip
-Just as with the nested method calls, it is not recommended to nest more than a few levels of collection objects. The ease with which you can read your code the next time you look at it will ultimately outweigh the additional lines of code it takes to break up a nested collection into multiple pieces.
+##Takeaways
+
+The fact is, code is for humans. So don't get too fancy with nesting as you will quickly find yourself in "nesting hell", where it is difficult for another programmer to read (and likely for you to read when you come back to it down the line.)
+
+There really is no performance gain made by nesting. It is purely an aesthetic. But you do want to understand it, even if you choose not to use it, as other programmers may use nesting.
