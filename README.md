@@ -58,7 +58,7 @@ Either will print:
     WHALECEPTION
 )
 ```
-Or altering on object in order to perform a check on it:
+Or altering an object in order to perform a check on it:
 
 ```objc
 if ([ [myArray[0] lowercaseString] isEqualToString:whaleception]) {
@@ -77,7 +77,7 @@ Either will print: `A whale within a whale.`.
 
 ![](https://curriculum-content.s3.amazonaws.com/reading-ios-nested-data/4559-whaleception.jpg)
 
-The primary usefulness of method nesting is reduce the line count in your code and to improve readability. As a rule of thumb, nesting methods more than two or three levels deep begins to go against this purpose. Particularly when the brackets begin to pile up at the end of a statement, readability starts to diminish. To improve readability and to help you keep them in order, either use whitespace to group sets of brackets into pairs or threes, or just break out your nesting into separate statements.
+The primary usefulness of method nesting is to reduce the line count in your code and to improve readability. As a rule of thumb, nesting methods more than two or three levels deep begins to go against this purpose. Particularly when the brackets begin to pile up at the end of a statement, readability starts to diminish. To improve readability and to help you keep them in order, either use whitespace to group sets of brackets into pairs or threes, or just break out your nesting into separate statements.
 
 ## Nested Collections
 
@@ -156,7 +156,7 @@ This will print: `e`.
 
 #### Setting A Sub-mutable-array
 
-If we try using the literal syntax to overwrite one of the objects in our 2-D `ticTac` board with the setter literal syntax like in this manner:
+If we try using the literal syntax to overwrite one of the objects in our 2-D `ticTac` board with the setter literal syntax in this manner:
 
 ```objc
 ticTac[1][1] = @"x";
@@ -191,41 +191,39 @@ In a similar way to how arrays can be nested, dictionary collections can be nest
 
 ```objc
 
-NSDictionary *jennyCurran = @{ @"first_name"       : @"Jenny"            ,
-                               @"last_name"        : @"Curran"           ,
-                               @"relationship"     : @"Friend"           ,
-                               @"phone_number"     : @"(555) 867-5309"   ,
-                               @"email_address"    : @"jenny@email.com" };
+NSDictionary *jennyCurran = @{ @"firstName"    : @"Jenny"            ,
+                               @"lastName"     : @"Curran"           ,
+                               @"relationship" : @"Friend"           ,
+                               @"phoneNumber"  : @"(555) 867-5309"   ,
+                               @"emailAddress" : @"jenny@email.com" };
     
-NSDictionary *uncleBob = @{ @"first_name"       : @"Bob"                 ,
-                            @"last_name"        : @""                    ,
-                            @"relationship"     : @"Uncle"               ,
-                            @"phone_number"     : @"(555) 876-1234"      ,
-                            @"email_address"    : @"unclebob@email.com" };
+NSDictionary *uncleBob = @{ @"firstName"    : @"Bob"                 ,
+                            @"lastName"     : @""                    ,
+                            @"relationship" : @"Uncle"               ,
+                            @"phoneNumber"  : @"(555) 876-1234"      ,
+                            @"emailAddress" : @"unclebob@email.com" };
 ```
 We can save the individual dictionaries into a super-dictionary by passing them in as values with keys:
 
 ```objc
-NSDictionary *contacts = @{ @"Jenny_Curran" : jennyCurran  ,
-                            @"Uncle_Bob"    : uncleBob    };
+NSDictionary *contacts = @{ @"Jenny Curran" : jennyCurran  ,
+                            @"Uncle Bob"    : uncleBob    };
 ```
 This nested dictionary can also be generated without the intermediary step like so:
 
 ```objc
-NSDictionary *contacts = @{ @"Jenny_Curran" : @{ @"first_name"       : @"Jenny"               ,
-                                                 @"last_name"        : @"Curran"              ,
-                                                 @"relationship"     : @"Friend"              ,
-                                                 @"phone_number"     : @"(555) 867-5309"      ,
-                                                 @"email_address"    : @"jenny@email.com"     }  ,
+NSDictionary *contacts = @{ @"Jenny Curran" : @{ @"firstName"    : @"Jenny"               ,
+                                                 @"lastName"     : @"Curran"              ,
+                                                 @"relationship" : @"Friend"              ,
+                                                 @"phoneNumber"  : @"(555) 867-5309"      ,
+                                                 @"emailAddress" : @"jenny@email.com"     }  ,
                                 
-                            @"Uncle_Bob"    : @{ @"first_name"       : @"Bob"                 ,
-                                                 @"last_name"        : @""                    ,
-                                                 @"relationship"     : @"Uncle"               ,
-                                                 @"phone_number"     : @"(555) 876-1234"      ,
-                                                 @"email_address"    : @"unclebob@email.com"  } };
+                            @"Uncle Bob"    : @{ @"firstName"    : @"Bob"                 ,
+                                                 @"lastName"     : @""                    ,
+                                                 @"relationship" : @"Uncle"               ,
+                                                 @"phoneNumber"  : @"(555) 876-1234"      ,
+                                                 @"emailAddress" : @"unclebob@email.com"  } };
 ```
-
-**Note:** *While dictionary keys that are strings can employ spaces in Objective-C, dictionaries are commonly translated to other languages when interacting with the internet. It's simply a style choice to write dictionary keys using snake case (with underscores) because whitespace in key names can be annoying in other languages such as JSON.*
 
 #### Accessing A Nested Dictionary
 
@@ -242,7 +240,7 @@ Class *element = dictionary[key][sub-key];
 Let's use this syntax to print Jenny's phone number:
 
 ```objc
-NSString *jennysPhone = contacts[@"Jenny_Curran"][@"phone_number"];
+NSString *jennysPhone = contacts[@"Jenny Curran"][@"phoneNumber"];
 
 NSLog(@"%@", jennysPhone);
 ```
@@ -253,7 +251,7 @@ This will print: `(555) 867-5309`.
 The setter literal syntax for dictionaries also only works for mutable dictionaries. Attempting to set a key and value in a standard dictionary with the setter literal will cause a crash:
 
 ```objc
-contacts[@"Uncle_Bob"][@"last_name"] = @"Gump";
+contacts[@"Uncle Bob"][@"lastName"] = @"Gump";
 ```
 
 This will cause an error that reads like this:
@@ -267,69 +265,78 @@ instance 0x7fd0e3eb6b60'
 However, if we had initialized our sub-dictionaries as mutable dictionaries above, we'd be able to use the setter literal syntax. Let's change them with `mutableCopy`:
 
 ```objc
-NSDictionary *contacts = @{ @"Jenny_Curran" : [@{ @"first_name"       : @"Jenny"               ,
-                                                  @"last_name"        : @"Curran"              ,
-                                                  @"relationship"     : @"Friend"              ,
-                                                  @"phone_number"     : @"(555) 867-5309"      ,
-                                                  @"email_address"    : @"jenny@email.com"     }
+NSDictionary *contacts = @{ @"Jenny Curran" : [@{ @"firstName"    : @"Jenny"               ,
+                                                  @"lastName"     : @"Curran"              ,
+                                                  @"relationship" : @"Friend"              ,
+                                                  @"phoneNumber"  : @"(555) 867-5309"      ,
+                                                  @"emailAddress" : @"jenny@email.com"     }
                                                mutableCopy] ,
                                 
-                            @"Uncle_Bob"    : [@{ @"first_name"       : @"Bob"                 ,
-                                                  @"last_name"        : @""                    ,
-                                                  @"relationship"     : @"Uncle"               ,
-                                                  @"phone_number"     : @"(555) 876-1234"      ,
-                                                  @"email_address"    : @"unclebob@email.com"  }
+                            @"Uncle Bob"    : [@{ @"firstName"    : @"Bob"                 ,
+                                                  @"lastName"     : @""                    ,
+                                                  @"relationship" : @"Uncle"               ,
+                                                  @"phoneNumber"  : @"(555) 876-1234"      ,
+                                                  @"emailAddress" : @"unclebob@email.com"  }
                                                mutableCopy] };
 ```
 Now we can successfully correct Uncle Bob's last name:
 
 ```objc
-contacts[@"Uncle_Bob"][@"last_name"] = @"Gump";
+contacts[@"Uncle Bob"][@"lastName"] = @"Gump";
     
-NSLog(@"%@", contacts[@"Uncle_Bob"][@"last_name"]);
+NSLog(@"%@", contacts[@"Uncle Bob"][@"lastName"]);
 ```
 This will print: `Gump`.
 
 ### Nested Combinations
 
-Collections can be nested into collections of other types. While this isn't exclusive to arrays and dictionaries, the literal syntax available to these collections makes them the workhorses of managing large sets of data. Interacting with nested combinations is very common when working with internet API ("Application Program Interface") requests which you'll learn how to do later in the course.
-
-Take a look at this model schema of a response object from the [Cardstreams.io](https://developer.cardstreams.io/docs#!/Lifestreams/getComments) API. Despite being in JSON ("JavaScript Object Notation"), you should recognize the literals for strings (`""`), arrays (`[``]`), and dictionaries (`{``}`), all without the prepending `@` symbol native to Objective-C:
-
-```json
-{
-  "count": 1,
-  "comments": [
-    {
-      "id": "id_value",
-      "parentId": "parentId_value",
-      "createdAt": "createdAt_value",
-      "content": "content_value"
-    }
-  ]
-}
-```
-There's a way to automatically translate (or "parse") this JSON response object into Objective-C, the end result in this example case would be equivalent to a manual definition that looks like this:
+Collections can be nested into collections of other types. While this isn't exclusive to arrays and dictionaries, the literal syntax available to these collections makes them the workhorses of managing large sets of data. Take, for example, and array of information on each of four adventuring hobbits:
 
 ```objc
-NSDictionary *responseObject =
-    @{
-        @"count": @1,
-        @"comments": @[ @{ @"id"       : @"id_value" ,
-                           @"parentId" : @"parentId_value" ,
-                           @"createdAt": @"createdAt_value" ,
-                           @"content"  : @"content_value"
-                         }
-                      ]
-     };
+NSArray *adventuringHobbits = @[ @{@"firstName" : @"Frodo"      ,
+                                   @"lastName"  : @"Baggins"    ,
+                                   @"nickname"  : @"Ringbearer" ,
+                                   @"age"       : @50           ,
+                                   @"inventory" : @[ @"ball of lint" 
+                                                     @"Ring of Power" ]  
+                                                                } ,
+                                 @{@"firstName" : @"Samwise"    ,
+                                   @"lastName"  : @"Gamgee"     ,
+                                   @"nickname"  : @"Sam"        ,
+                                   @"age"       : @38           } ,
+                                 @{@"firstName" : @"Meriadoc"   ,
+                                   @"lastName"  : @"Brandybuck" ,
+                                   @"nickname"  : @"Merry"      ,
+                                   @"age"       : @36           } ,
+                                 @{@"firstName" : @"Peregrine"  ,
+                                   @"lastName"  : @"Took"       ,
+                                   @"nickname"  : @"Pippin"     ,
+                                   @"age"       : @28           }
+                                 ];
 ```
-After studying the structure of this nested combination, we can access the `content` of the first `comment` by using the accessor literal syntax in the correct order:
+**A Note For Tolkien Fans:** *Character ages are those at the beginning of the "Lord of the Rings" trilogy and collected [here](http://tinw.hubpages.com/hub/lord-of-the-rings-characters-ages)* 
+
+This is a nested combination: an array of dictionaries. Knowing the order the dictionaries in the array and their keys, we can chain the accessor literals of the array and the dictionary to go directly to the value of Pippin's age:
 
 ```objc
-NSString *content = responseObject[@"comments"][0][@"content"];
-    
-NSLog(@"%@", content);
-```
-This will print: `content_value`.
+NSNumber *pippinsAge = adventuringHobbits[3][@"age"];
 
-Did you notice how we chained the dictionary literal syntax along with the array literal syntax? The literals can be chained together in any arrangement as long as they're correctly accessing the relevant collection.
+NSLog(@"Pippin is %@ years old.", pippinsAge);
+```
+This will print: `Pippin is 28 years old.`.
+
+![](https://curriculum-content.s3.amazonaws.com/reading-ios-nested-data/merryPippin.gif)
+*Lets get another one...*
+
+If you have keen eyes like Legolas, you may have noticed that Frodo has an extra dictionary key called `inventory` that points to an array with two objects in it. *What has it gots in its pocketses?* Well, we can access the contents of Frodo's inventory by chaining the accessor literals like this:
+
+```objc
+NSString *preciousss = adventuringHobbits[0][@"inventory"][1];
+
+NSLog(@"Frodo has the %@!", preciousss);
+```
+This will print: `Frodo has the Ring of Power!`.
+
+![](https://curriculum-content.s3.amazonaws.com/reading-ios-nested-data/frodoRing.gif)
+
+Now take that thing to Mordor, Frodo!
