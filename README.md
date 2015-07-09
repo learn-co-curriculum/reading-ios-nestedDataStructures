@@ -326,6 +326,7 @@ NSLog(@"Pippin is %@ years old.", pippinsAge);
 This will print: `Pippin is 28 years old.`.
 
 ![](https://curriculum-content.s3.amazonaws.com/reading-ios-nested-data/merryPippin.gif)
+
 *Lets get another one...*
 
 If you have keen eyes like Legolas, you may have noticed that Frodo has an extra dictionary key called `inventory` that points to an array with two objects in it. *What has it gots in its pocketses?* Well, we can access the contents of Frodo's inventory by chaining the accessor literals like this:
