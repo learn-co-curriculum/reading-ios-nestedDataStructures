@@ -22,18 +22,18 @@ In programming, the term "nesting" can refer to either placing method calls with
 
 Whether you realized it or not, you've already used nested method calls. The most common example of a nested method call is the pairing of `+alloc` with an `-init` method on the same line:
 
-```objc
+```objective_c
 NSMutableArray *myArray = [[NSMutableArray alloc] init];
 ```
 What this means implicitly is for the program to take the result of `[NSMutableArray alloc]` class method and make it the recipient object of the `init` instance method. In effect, we're capturing the return of `[NSMutableArray alloc]` directly into another method call. It's equally valid (though unusual) to write this on two lines:
 
-```objc
+```objective_c
 NSMutableArray *myArray = [NSMutableArray alloc];
 myArray = [myArray init];
 ```
 Nesting a method call is useful in almost any case that you only need to interact with its result once, such as altering it before adding it to a collection:
 
-```objc
+```objective_c
 NSString *whaleception = @"whaleception";
 
 [myArray addObject:[whaleception uppercaseString]];
@@ -42,7 +42,7 @@ NSLog(@"%@", myArray);
 ```
 Which is equivalent to:
 
-```objc
+```objective_c
 NSString *whaleception = @"whaleception";
 
 NSString *whaleceptionUC = [whaleception uppercaseString];
@@ -60,7 +60,7 @@ Either will print:
 ```
 Or altering an object in order to perform a check on it:
 
-```objc
+```objective_c
 if ([ [myArray[0] lowercaseString] isEqualToString:whaleception]) {
     NSLog(@"A whale within a whale.");
 }
@@ -87,14 +87,14 @@ The other form of nesting in programming is that of collection objects. Let's st
 
 Nesting arrays is how a computer can understand a two-dimensional matrix, such as a tic-tac-toe board. We can create an "array of arrays" pretty simply using the array literal syntax like this:
 
-```objc
+```objective_c
 NSArray *ticTac = @[ @[ @"1", @"2", @"3" ]   ,
                      @[ @"4", @"5", @"6" ]   ,
                      @[ @"7", @"8", @"9" ]  ];
 ```
 We've just created a three-by-three square! For readability, we've written this single statement on three separate lines, but the compiler will translate it just the same as if we had written it on a single line:
 
-```objc
+```objective_c
 NSArray *ticTac = @[ @[ @"1", @"2", @"3" ], @[ @"4", @"5", @"6" ], @[ @"7", @"8", @"9" ] ];
 ```
 So, why didn't we just a write a single array of nine strings? Organization. Each sub-array in `ticTac` represents a different row. That means the sub-arrays' indexes line up into columns. So,  now that we have an array of arrays, the sub-arrays don't have their own names. How do we access just a single sub-array? Through the super-array (or "parent array"), of course!
@@ -103,17 +103,17 @@ So, why didn't we just a write a single array of nine strings? Organization. Eac
 
 You should recall the array accessor literal that accepts a valid index:
 
-```objc
+```objective_c
 Class *element = array[index];
 ```
 But this literal syntax also allows us to access a sub-array by index by chaining the literals using this format:
 
-```objc
+```objective_c
 Class *element = array[index][sub-index];
 ```
 While we could access the sub-array in two steps by first capturing the return of an index call on `ticTac`:
 
-```objc
+```objective_c
 NSArray *row0 = ticTac[0];
 NSString *tileThree = row0[2];
 
@@ -123,7 +123,7 @@ This will print: `3`.
 
 The literal syntax allows us access a sub-array within `ticTac` without having to name the sub-array in a captured return:
 
-```objc
+```objective_c
 NSString *tileThree = ticTac[0][2];
 
 NSLog(@"%@", tileThree);
@@ -132,7 +132,7 @@ This will also print: `3`.
 
 So, we're able to use the literal syntax to access the same sub-array without having to give it an individual name. We can actually chain this literal syntax as deep as the sub-arrays go. For example, if we have a three-dimensional tic-tac-toe cube initialized like so:
 
-```objc
+```objective_c
 NSArray *ticTac3D = @[ @[ @[ @"1", @"2", @"3" ]  ,
                           @[ @"4", @"5", @"6" ]  ,
                           @[ @"7", @"8", @"9" ]  ]  ,
@@ -147,7 +147,7 @@ NSArray *ticTac3D = @[ @[ @[ @"1", @"2", @"3" ]  ,
 ```
 We can access a sub-sub-array containing a string by chaining a third literal accessor:
 
-```objc
+```objective_c
 NSString *cubieE = ticTac3D[1][1][1];
     
 NSLog(@"%@", cubieE);
@@ -158,19 +158,19 @@ This will print: `e`.
 
 If we try using the literal syntax to overwrite one of the objects in our 2-D `ticTac` board with the setter literal syntax in this manner:
 
-```objc
+```objective_c
 ticTac[1][1] = @"x";
 ```
 We'll get a crash. Remember, *the setter literal syntax only works for mutable types*. We'd have to declare the sub-arrays as mutable arrays in order to overwrite their contents:
 
-```objc
+```objective_c
 NSArray *ticTac = @[ [@[ @"1", @"2", @"3" ] mutableCopy]  ,
                      [@[ @"4", @"5", @"6" ] mutableCopy]  ,
                      [@[ @"7", @"8", @"9" ] mutableCopy] ];
 ```
 Now we can run our setter literal:
 
-```objc
+```objective_c
 NSLog(@"Before setter: %@", ticTac[1][1]);
     
 ticTac[1][1] = @"x";
@@ -189,7 +189,7 @@ Of all the objects in our current scope: our nine string objects, three sub-muta
 
 In a similar way to how arrays can be nested, dictionary collections can be nested as well. This takes the form of a sub-dictionary being set as the value to some key within a super-dictionary (or "parent dictionary). Let's take our contact list as an example:
 
-```objc
+```objective_c
 
 NSDictionary *jennyCurran = @{ @"firstName"    : @"Jenny"            ,
                                @"lastName"     : @"Curran"           ,
@@ -205,13 +205,13 @@ NSDictionary *uncleBob = @{ @"firstName"    : @"Bob"                 ,
 ```
 We can save the individual dictionaries into a super-dictionary by passing them in as values with keys:
 
-```objc
+```objective_c
 NSDictionary *contacts = @{ @"Jenny Curran" : jennyCurran  ,
                             @"Uncle Bob"    : uncleBob    };
 ```
 This nested dictionary can also be generated without the intermediary step like so:
 
-```objc
+```objective_c
 NSDictionary *contacts = @{ @"Jenny Curran" : @{ @"firstName"    : @"Jenny"               ,
                                                  @"lastName"     : @"Curran"              ,
                                                  @"relationship" : @"Friend"              ,
@@ -229,17 +229,17 @@ NSDictionary *contacts = @{ @"Jenny Curran" : @{ @"firstName"    : @"Jenny"     
 
 And in the similar way that nested arrays can be accessed with the literal syntax, nested dictionaries can be accessed with the dictionary literal syntax:
 
-```objc
+```objective_c
 Class *element = dictionary[key];
 ```
 And for a sub-dictionary value:
 
-```objc
+```objective_c
 Class *element = dictionary[key][sub-key];
 ```
 Let's use this syntax to print Jenny's phone number:
 
-```objc
+```objective_c
 NSString *jennysPhone = contacts[@"Jenny Curran"][@"phoneNumber"];
 
 NSLog(@"%@", jennysPhone);
@@ -250,7 +250,7 @@ This will print: `(555) 867-5309`.
 
 The setter literal syntax for dictionaries also only works for mutable dictionaries. Attempting to set a key and value in a standard dictionary with the setter literal will cause a crash:
 
-```objc
+```objective_c
 contacts[@"Uncle Bob"][@"lastName"] = @"Gump";
 ```
 
@@ -264,7 +264,7 @@ instance 0x7fd0e3eb6b60'
 ```
 However, if we had initialized our sub-dictionaries as mutable dictionaries above, we'd be able to use the setter literal syntax. Let's change them with `mutableCopy`:
 
-```objc
+```objective_c
 NSDictionary *contacts = @{ @"Jenny Curran" : [@{ @"firstName"    : @"Jenny"               ,
                                                   @"lastName"     : @"Curran"              ,
                                                   @"relationship" : @"Friend"              ,
@@ -281,7 +281,7 @@ NSDictionary *contacts = @{ @"Jenny Curran" : [@{ @"firstName"    : @"Jenny"    
 ```
 Now we can successfully correct Uncle Bob's last name:
 
-```objc
+```objective_c
 contacts[@"Uncle Bob"][@"lastName"] = @"Gump";
     
 NSLog(@"%@", contacts[@"Uncle Bob"][@"lastName"]);
@@ -292,7 +292,7 @@ This will print: `Gump`.
 
 Collections can be nested into collections of other types. While this isn't exclusive to arrays and dictionaries, the literal syntax available to these collections makes them the workhorses of managing large sets of data. Take, for example, and array of information on each of four adventuring hobbits:
 
-```objc
+```objective_c
 NSArray *adventuringHobbits = @[ @{@"firstName" : @"Frodo"      ,
                                    @"lastName"  : @"Baggins"    ,
                                    @"nickname"  : @"Ringbearer" ,
@@ -318,7 +318,7 @@ NSArray *adventuringHobbits = @[ @{@"firstName" : @"Frodo"      ,
 
 This is a nested combination: an array of dictionaries. Knowing the order the dictionaries in the array and their keys, we can chain the accessor literals of the array and the dictionary to go directly to the value of Pippin's age:
 
-```objc
+```objective_c
 NSNumber *pippinsAge = adventuringHobbits[3][@"age"];
 
 NSLog(@"Pippin is %@ years old.", pippinsAge);
@@ -331,7 +331,7 @@ This will print: `Pippin is 28 years old.`.
 
 If you have keen eyes like Legolas, you may have noticed that Frodo has an extra dictionary key called `inventory` that points to an array with two objects in it. *What has it gots in its pocketses?* Well, we can access the contents of Frodo's inventory by chaining the accessor literals like this:
 
-```objc
+```objective_c
 NSString *preciousss = adventuringHobbits[0][@"inventory"][1];
 
 NSLog(@"Frodo has the %@!", preciousss);
