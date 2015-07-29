@@ -67,7 +67,7 @@ if ([ [myArray[0] lowercaseString] isEqualToString:whaleception]) {
 ```
 Which is equivalent to:
 
-```obcj
+```objective_c
 NSString *whaleceptionLC = [myArray[0] lowercaseString];
 if ([whaleceptionLC isEqualToString:whaleception]) {
     NSLog(@"A whale within a whale.");
