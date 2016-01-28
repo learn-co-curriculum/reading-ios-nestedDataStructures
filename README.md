@@ -342,4 +342,4 @@ This will print: `Frodo has the Ring of Power!`.
 
 Now take that thing to Mordor, Frodo!
 
-<a href='https://learn.co/lessons/reading-ios-nestedDataStructures' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/reading-ios-nestedDataStructures' title='Nested Data Structures'>Nested Data Structures</a> on Learn.co and start learning to code for free.</p>
